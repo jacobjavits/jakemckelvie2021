@@ -1,0 +1,38 @@
+nav {
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    @include breakpoint-up($sm) {
+      display: flex;
+    }
+
+    li {
+      @include breakpoint-up($sm) {
+        + li {
+          &::before {
+            content: "/";
+            font-weight: bold;
+            margin-left: 0.5ch;
+            margin-right: 0.5ch;
+          }
+        }
+      }
+
+      a {
+        color: var(--navLinkColor);
+        font-family: var(--fontSans);
+        font-weight: bold;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: inline-block;
+
+        &:hover {
+          color: var(--accentColor);
+        }
+      }
+    }
+  }
+}

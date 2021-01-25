@@ -1,0 +1,33 @@
+---
+title: Blog Post
+---
+<!doctype html>
+<html>
+
+  <head>
+    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ '/css/style.min.css' | url }}">
+  </head>
+
+  <body>
+
+    {% include 'header.njk' %}
+
+    <main>
+      <div class="container">
+        <article class="post">
+          <header class="post__header">
+            <h1 class="post__title">{{ title }}</h1>
+            <time class="post__date">{{ page.date.toLocaleDateString() }}</time>
+          </header>
+          {{ content | safe }}
+        </article>
+      </div>
+    </main>
+
+    {% include 'footer.njk' %}
+
+  </body>
+
+</html>

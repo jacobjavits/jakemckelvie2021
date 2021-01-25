@@ -1,0 +1,61 @@
+/* manrope-regular - latin */
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("../fonts/manrope-v3-latin-regular.woff2") format("woff2"),
+    url("../fonts/manrope-v3-latin-regular.woff") format("woff");
+}
+
+/* manrope-800 - latin */
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 800;
+  src: local(""), url("../fonts/manrope-v3-latin-800.woff2") format("woff2"),
+    url("../fonts/manrope-v3-latin-800.woff") format("woff");
+}
+
+:root {
+  // Colors
+  --bgColor: #fff;
+  --baseColor: #2b1e18;
+  --accentColor: #ffbe00;
+  --lightest: #fff;
+  --darkest: #131014;
+  --textColor: var(--darkest);
+  --linkColor: var(--darkest);
+  --navLinkColor: var(--darkest);
+
+  // Layout
+  --container: 1100px;
+  --maxContainer: 85vw;
+  --containerNarrow: 620px;
+
+  // Fonts
+  --fontSerif: "Manrope", serif;
+  --fontSans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  // Decorators
+  --radiusSmall: 4px;
+  --radius: 8px;
+  --radiusLarge: 12px;
+}
+
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     --bgColor: var(--darkest);
+//     --baseColor: #ffbe00;
+//     --accentColor: #fff;
+//     --lightest: #fff;
+//     --darkest: #131014;
+//     --textColor: var(--lightest);
+//     --linkColor: #ffbe00;
+//   }
+// }
+
+// SCSS VARIABLES
+$sm: 450px;
+$md: 767px;
+$lg: 1001px;

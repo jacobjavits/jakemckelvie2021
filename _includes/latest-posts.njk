@@ -1,0 +1,10 @@
+<ul class="latest-posts">
+  {%- for post in collections.post -%}
+    <li class="post-card">
+      <a class="post-card__link" href="{{ post.url }}">
+        <h3 class="post-card__title">{{ post.data.title }}</h3>
+        <time class="post-card__date">{{ post.date.toLocaleDateString() }}</time>
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>

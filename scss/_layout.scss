@@ -1,0 +1,17 @@
+.container {
+  width: var(--container);
+  max-width: var(--maxContainer);
+  position: relative;
+  @include center-block;
+}
+
+.container-narrow {
+  width: 100%;
+  width: var(--containerNarrow);
+  max-width: var(--maxContainer);
+  @include center-block;
+}
+
+main {
+  margin-bottom: 6rem;
+}

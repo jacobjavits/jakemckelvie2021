@@ -1,0 +1,22 @@
+p {
+  max-width: 65ch;
+  font-size: 1.125rem;
+  margin: 0;
+
+  + p {
+    margin-top: 2rem;
+  }
+}
+
+li {
+  max-width: 65ch;
+}
+
+blockquote {
+  max-width: 65ch;
+}
+
+code {
+  background-color: var(--darkest);
+  color: var(--lightest);
+}
