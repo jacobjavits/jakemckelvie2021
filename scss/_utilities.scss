@@ -23,15 +23,23 @@
   .offset-right {
     transform: translateX(3rem);
   }
+}
 
-  .image-right {
+.image-right {
+  margin-bottom: 2rem;
+
+  @include breakpoint-up($md) {
     float: right;
-    margin: 0 0 2rem 2rem;
+    margin-left: 2rem;
   }
+}
 
-  .image-left {
+.image-left {
+  margin-bottom: 2rem;
+
+  @include breakpoint-up($md) {
     float: left;
-    margin: 0 2rem 0 2rem;
+    margin-right: 2rem;
   }
 }
 
@@ -59,4 +67,5 @@
   border: 2px solid var(--darkest);
   border-radius: 4px;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.125), 4px 4px 0px var(--accentColor);
+  max-width: 70vw;
 }

@@ -13,3 +13,11 @@
     margin-top: 3rem;
   }
 }
+
+.intro__bio {
+  margin-bottom: 3rem;
+
+  @include breakpoint-up($md) {
+    margin-bottom: 0;
+  }
+}

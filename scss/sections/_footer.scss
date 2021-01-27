@@ -1,8 +1,12 @@
 .site-footer {
   background-color: var(--baseColor);
-  background-image: linear-gradient(to right, #3e2f29 50%, var(--baseColor) 50%);
+  background-image: linear-gradient(
+    to right,
+    #3e2f29 50%,
+    var(--baseColor) 50%
+  );
   color: var(--lightest);
-  margin: 25vw auto 1rem;
+  margin: 2rem auto 1rem;
   max-width: calc(100vw - 4rem);
   width: 100%;
   border-radius: var(--radius);
@@ -18,7 +22,11 @@
     margin: 0;
     max-width: none;
     letter-spacing: 1px;
-    text-align: right;
+    text-align: center;
+    
+    @include breakpoint-up($md) {
+      text-align: right;
+    }
   }
 
   .head {
@@ -38,12 +46,3 @@
     }
   }
 }
-
-// @media (prefers-color-scheme: dark) {
-//   .site-footer {
-//     background-color: var(--lightest);
-//     background-image: linear-gradient(to right, #3e2f29 50%, var(--accentColor) 50%);
-//     color: var(--darkest);
-//     box-shadow: 0.5rem 0.5rem 0px var(--darkest);
-//   }
-// }

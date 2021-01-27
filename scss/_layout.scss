@@ -13,5 +13,7 @@
 }
 
 main {
-  margin-bottom: 6rem;
+  @include breakpoint-up($md) {
+    margin-bottom: 6rem;
+  }
 }
