@@ -1,7 +1,7 @@
 [build]
   publish = "_site"
   functions = "functions/"
-  command = "eleventy"
+  command = "eleventy && cd functions && npm install && cd .."
 
 [dev]
   publish = "_site"
