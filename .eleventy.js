@@ -1,5 +1,4 @@
 const eleventyVue = require("@11ty/eleventy-plugin-vue");
-require("dotenv").config();
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.setTemplateFormats([
