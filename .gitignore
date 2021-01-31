@@ -1,7 +1,7 @@
 node_modules/
-package-lock.json
 .env
 .cache
 .vscode
-# Local Netlify folder
+.DS_Store
+package-lock.json
 .netlify

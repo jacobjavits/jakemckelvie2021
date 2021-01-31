@@ -6,9 +6,10 @@ module.exports = function(eleventyConfig) {
     "html",
     "css", // css is not yet a recognized template extension in Eleventy
     "njk",
+    "jpg",
+    "png",
   ]);
 
-  eleventyConfig.addPassthroughCopy("**/*.jpg");
   eleventyConfig.addPassthroughCopy("fonts/*.woff2");
 
   eleventyConfig.addPlugin(eleventyVue);
