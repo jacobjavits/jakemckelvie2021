@@ -8,7 +8,7 @@ module.exports = function(eleventyConfig) {
     "njk",
   ]);
 
-  eleventyConfig.addPassthroughCopy("*.jpg");
+  eleventyConfig.addPassthroughCopy("**/*.jpg");
   eleventyConfig.addPassthroughCopy("fonts/*.woff2");
 
   eleventyConfig.addPlugin(eleventyVue);
