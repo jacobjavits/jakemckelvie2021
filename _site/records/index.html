@@ -2,7 +2,8 @@
 <html>
 
   <head>
-    <title>A New Website!</title>
+    <title>Records
+      | Jake McKelvie</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/style.min.css">
   </head>
@@ -26,7 +27,7 @@
             <a class="main-nav__link" href="/blog">Blog</a>
           </li>
           <li>
-            <a class="main-nav__link" href="/things-i-like">Things I Like</a>
+            <a class="main-nav__link" href="/records">Records</a>
           </li>
         </ul>
       </nav>
@@ -34,17 +35,134 @@
   </div>
 </header>
 
-    <main>
-      <article>
-        <div class="container-narrow">
-          <h1>A New Website!</h1>
-<p>I have long had it in the back of my mind that I would like to redesign my personal site. I made the first version of this site back in 2015 when I first started freelancing so I would have a portfolio of some kind. I made occasional small updates to that iteration but nothing of much substance. After a couple false starts over the past year or so I have finally gotten around to putting this new one together.</p>
-<p>My last site was built with <a href="https://jekyllrb.com/">Jekyll</a>. I liked it quite well and considered using it for this one, but I ultimately decided to go with one of the other popular static site players <a href="https://www.11ty.dev">Eleventy</a>. The cool thing about Eleventy is that it's pretty much everything-agnostic, which is to say you can use it however you want with no hard tooling requirements. You can employ whatever templating language you want -- you can write everything in straight HTML if you so choose -- and it will compile everything into a lightweight static site. I used it on one client site a few months back and found it to be a good balance between vanilla everything and bloated frameworks that would be unnecessary for this.</p>
-<p>I have some fun ideas for this site. I want to start blogging more regularly but I also want to do more &quot;just because&quot; things. I had initially planned to flesh this site out a bit more before releasing it but, since no one is keeping track and my old website is so out of date at this point, I thought I'd push it up as-is which should inspire me to chip away at it over time. Famous last words? Hope not!</p>
+    
+    <div class="container">
+    
 
-        </div>
-      </article>
-    </main>
+      <main>
+
+        
+<script src="https://unpkg.com/vue@next"></script>
+
+<p>This data is being pulled from my <a href="https://www.discogs.com/user/jacobjavits/collection">Discogs</a> profile, which I try to keep fairly up to date.</p>
+
+<p>The layout is rendered with Vue and it uses Netlify functions to run the Javascript Fetch API to pull results.</p>
+
+<p>This is a work in progress and I'll try to document it as it progresses.</p>
+
+<h2>To Do</h2>
+<ul>
+  <li>Set up routing to change page slug when a different page's data is pulled.</li>
+  <li>Make loading smoother when page data changes.</li>
+  <li>Fix sorting to ignore the " in "Weird Al" so it doesn't show up first (not that Al doesn't deserve top billing).</li>
+  <li>Figure out issue with certain artists appearing out of order (e.g. one Blondie album falls several places before the rest of them).</li>
+</ul>
+
+<div id="my-records">
+
+  
+
+    <div class="pagination">
+      <button @click="prevPage">Previous</button>
+      <ul class="pagination__numbers">
+        <li v-for="n in pagination.pages" :key="n">
+          <template v-if="n == pageNumber">
+            <strong>{{ n }}</strong>
+          </template>
+          <template v-else="v-else">
+            <a @click="fetchRecords(n)">{{ n }}</a>
+          </template>
+        </li>
+      </ul>
+      <button @click="nextPage">Next</button>
+    </div>
+    <div v-if="loading" class="loading">
+      Loading...
+    </div>
+
+    <div v-if="error" class="error">
+      {{ error }}
+    </div>
+
+    <div v-if="sortedAlpha">
+      <ul class="record-collection">
+        <li class="record" v-for="record in sortedAlpha" :key="record.id">
+          <img v-bind:src="record.basic_information.thumb" alt="">
+          <span class="record__artist" v-for="artist in record.basic_information.artists">
+            {{ artist.name }}
+          </span>
+          <p class="record__title">{{ record.basic_information.title }}</p>
+        </li>
+      </ul>
+    </div>
+
+  
+</div>
+
+
+
+<script>
+  const MyRecords = {
+    created() {
+      this.fetchRecords(this.pageNumber);
+    },
+    computed: {
+      sortedAlpha() {
+        return this
+          .records
+          .sort((a, b) => {
+            return a
+              .basic_information
+              .artists[0]
+              .name
+              .localeCompare(b.basic_information.artists[0].name);
+          });
+      }
+    },
+    data() {
+      return {records: [], pagination: [], pageNumber: 1};
+    },
+    methods: {
+      fetchRecords(pageNumber) {
+        return fetch("/.netlify/functions/discogs", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({page: `${pageNumber}`})
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            this.records = data.releases;
+            this.pagination = data.pagination;
+          })
+          .then(this.pageNumber = pageNumber);
+      },
+      nextPage() {
+        this.pageNumber += this.pageNumber < this.pagination.pages
+          ? 1
+          : 0;
+        this.fetchRecords(this.pageNumber);
+      },
+      prevPage() {
+        this.pageNumber -= this.pageNumber > 1
+          ? 1
+          : 0;
+        this.fetchRecords(this.pageNumber);
+      }
+    }
+  };
+
+  Vue
+    .createApp(MyRecords)
+    .mount("#my-records");
+</script>
+
+      </main>
+
+    
+    </div>
+    
 
     <div class="site-footer">
   <div class="container">

@@ -41,6 +41,11 @@
   --radiusSmall: 4px;
   --radius: 8px;
   --radiusLarge: 12px;
+
+  --shadow: 0.25rem 0.25rem 0px var(--darkest);
+  --shadowHover: 0.5rem 0.5rem 1px var(--darkest);
+
+  --transition: 0.3s;
 }
 
 // @media (prefers-color-scheme: dark) {

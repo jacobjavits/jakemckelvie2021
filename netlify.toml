@@ -1,0 +1,9 @@
+[build]
+  publish = "_site"
+  functions = "functions/"
+  command = "eleventy"
+
+[dev]
+  publish = "_site"
+  functions = "functions/"
+  port = 8888

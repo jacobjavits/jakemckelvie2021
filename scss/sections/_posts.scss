@@ -31,7 +31,7 @@
     color: var(--darkest);
     text-decoration: none;
     transition: 0.1s ease;
-    box-shadow: 0.25rem 0.25rem 0px var(--darkest);
+    box-shadow: var(--shadow);
     overflow: hidden;
 
     &::before {
@@ -43,12 +43,12 @@
       width: 100%;
       opacity: 0;
       background-color: var(--accentColor);
-      transition: 0.3s;
+      transition: var(--transition);
     }
 
     &:hover {
       border-radius: var(--radius);
-      box-shadow: 0.5rem 0.5rem 1px var(--darkest);
+      box-shadow: var(--shadowHover);
 
       &::before {
         opacity: 1;

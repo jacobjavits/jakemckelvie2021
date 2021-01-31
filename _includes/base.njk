@@ -12,7 +12,9 @@
 
     {% include 'header.njk' %}
 
+    {% if container %}
     <div class="{{ container }}">
+    {% endif %}
 
       <main>
 
@@ -20,7 +22,9 @@
 
       </main>
 
+    {% if container %}
     </div>
+    {% endif %}
 
     {% include 'footer.njk' %}
 

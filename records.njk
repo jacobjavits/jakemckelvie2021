@@ -1,0 +1,121 @@
+---
+layout: base.njk
+title: Records
+container: container
+---
+
+<script src="https://unpkg.com/vue@next"></script>
+
+<p>This data is being pulled from my <a href="https://www.discogs.com/user/jacobjavits/collection">Discogs</a> profile, which I try to keep fairly up to date.</p>
+
+<p>The layout is rendered with Vue and it uses Netlify functions to run the Javascript Fetch API to pull results.</p>
+
+<p>This is a work in progress and I'll try to document it as it progresses.</p>
+
+<h2>To Do</h2>
+<ul>
+  <li>Set up routing to change page slug when a different page's data is pulled.</li>
+  <li>Make loading smoother when page data changes.</li>
+  <li>Fix sorting to ignore the " in "Weird Al" so it doesn't show up first (not that Al doesn't deserve top billing).</li>
+  <li>Figure out issue with certain artists appearing out of order (e.g. one Blondie album falls several places before the rest of them).</li>
+</ul>
+
+<div id="my-records">
+
+  {% verbatim %}
+
+    <div class="pagination">
+      <button @click="prevPage">Previous</button>
+      <ul class="pagination__numbers">
+        <li v-for="n in pagination.pages" :key="n">
+          <template v-if="n == pageNumber">
+            <strong>{{ n }}</strong>
+          </template>
+          <template v-else="v-else">
+            <a @click="fetchRecords(n)">{{ n }}</a>
+          </template>
+        </li>
+      </ul>
+      <button @click="nextPage">Next</button>
+    </div>
+    <div v-if="loading" class="loading">
+      Loading...
+    </div>
+
+    <div v-if="error" class="error">
+      {{ error }}
+    </div>
+
+    <div v-if="sortedAlpha">
+      <ul class="record-collection">
+        <li class="record" v-for="record in sortedAlpha" :key="record.id">
+          <img v-bind:src="record.basic_information.thumb" alt="">
+          <span class="record__artist" v-for="artist in record.basic_information.artists">
+            {{ artist.name }}
+          </span>
+          <p class="record__title">{{ record.basic_information.title }}</p>
+        </li>
+      </ul>
+    </div>
+
+  {% endverbatim %}
+</div>
+
+{# <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script> #}
+
+<script>
+  const MyRecords = {
+    created() {
+      this.fetchRecords(this.pageNumber);
+    },
+    computed: {
+      sortedAlpha() {
+        return this
+          .records
+          .sort((a, b) => {
+            return a
+              .basic_information
+              .artists[0]
+              .name
+              .localeCompare(b.basic_information.artists[0].name);
+          });
+      }
+    },
+    data() {
+      return {records: [], pagination: [], pageNumber: 1};
+    },
+    methods: {
+      fetchRecords(pageNumber) {
+        return fetch("/.netlify/functions/discogs", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({page: `${pageNumber}`})
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            this.records = data.releases;
+            this.pagination = data.pagination;
+          })
+          .then(this.pageNumber = pageNumber);
+      },
+      nextPage() {
+        this.pageNumber += this.pageNumber < this.pagination.pages
+          ? 1
+          : 0;
+        this.fetchRecords(this.pageNumber);
+      },
+      prevPage() {
+        this.pageNumber -= this.pageNumber > 1
+          ? 1
+          : 0;
+        this.fetchRecords(this.pageNumber);
+      }
+    }
+  };
+
+  Vue
+    .createApp(MyRecords)
+    .mount("#my-records");
+</script>

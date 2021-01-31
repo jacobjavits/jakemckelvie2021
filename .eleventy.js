@@ -1,12 +1,16 @@
-module.exports = function (eleventyConfig) {
+const eleventyVue = require("@11ty/eleventy-plugin-vue");
+require("dotenv").config();
+
+module.exports = function(eleventyConfig) {
   eleventyConfig.setTemplateFormats([
     "md",
     "html",
     "css", // css is not yet a recognized template extension in Eleventy
-    "woff2",
-    "ttf",
     "njk",
-    "jpg",
-    "png"
   ]);
+
+  eleventyConfig.addPassthroughCopy("*.jpg");
+  eleventyConfig.addPassthroughCopy("fonts/*.woff2");
+
+  eleventyConfig.addPlugin(eleventyVue);
 };
