@@ -1,5 +1,5 @@
 <ul class="latest-posts">
-  {%- for post in collections.post -%}
+  {%- for post in collections.post | reverse -%}
     <li class="post-card">
       <a class="post-card__link" href="{{ post.url }}">
         <h3 class="post-card__title">{{ post.data.title }}</h3>

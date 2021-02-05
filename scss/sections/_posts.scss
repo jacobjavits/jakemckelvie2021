@@ -15,11 +15,7 @@
 
 .post-card {
   margin-bottom: 2rem;
-
-  @include breakpoint-up($md) {
-    margin-bottom: 0;
-  }
-
+  
   a {
     display: flex;
     justify-content: space-between;
