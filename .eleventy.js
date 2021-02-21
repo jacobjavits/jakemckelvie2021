@@ -8,6 +8,7 @@ module.exports = function(eleventyConfig) {
     "njk",
     "jpg",
     "png",
+    "svg"
   ]);
 
   eleventyConfig.addPassthroughCopy("fonts/*.woff2");

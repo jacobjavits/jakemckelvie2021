@@ -1,0 +1,41 @@
+.site-header {
+  padding: 1rem 0;
+  
+  @media (min-width: 768px) {
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.site-header-contents {
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.site-logo {
+  margin-top: 0;
+
+  @media (min-width: 768px) {
+    margin: 0;
+  }
+
+  a {
+    display: block;
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+
+    @media (min-width: 450px) {
+      width: 325px;
+    }
+
+    g {
+      fill: var(--textColor);
+    }
+  }
+}

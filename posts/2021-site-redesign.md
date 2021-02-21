@@ -15,7 +15,7 @@ Eleventy is buzzed about quite a bit lately and I think for good reason. Getting
 - I'm using SCSS for nesting and imports, but for variables I'm using CSS custom properties. I may look for a more elegant solution that could allow me to scrap SCSS entirely, but for now I like it.
 - I think I'm going to add dark mode support, just working out the scheme.
 - As of now there is no Javascript on the site at all. That's definitely going to change eventually with some of the projects I have in mind, but there's nothing to warrant its inclusion so far.
-- Using [https://netlify.com](Netlify) for hosting as I had on the previous version. Works great.
+- Using [Netlify](https://netlify.com) for hosting as I had on the previous version. Works great.
 
 
 I'm hoping to start writing blog posts a bit more than my previous pace, which was one post over the course of five years, in which I whined about email clients (notice that post hasn't been migrated). But in any case I'm glad to have revamped this site a bit and I'm looking forward to doing some more with it.

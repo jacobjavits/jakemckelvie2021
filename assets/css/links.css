@@ -1,0 +1,28 @@
+a {
+  color: var(--linkColor);
+}
+
+a:not([class]) {
+  position: relative;
+  color: var(--linkColor);
+  text-underline-offset: 4px;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--accentColor);
+  transition: 0.1s ease;
+}
+
+a:not([class]):hover {
+  text-decoration-thickness: 150%;
+  text-underline-offset: -110%;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  a:not([class]) {
+    color: var(--lightest);
+
+    &:hover {
+      color: var(--darkest);
+    }
+  }
+} */

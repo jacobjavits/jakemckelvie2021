@@ -7,7 +7,7 @@ title: Blog Post
   <head>
     <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ '/css/style.min.css' | url }}">
+    <link rel="stylesheet" href="{{ '/dist/css/style.css' | url }}">
   </head>
 
   <body>
@@ -15,15 +15,15 @@ title: Blog Post
     {% include 'header.njk' %}
 
     <main>
-      <div class="container">
-        <article class="post">
-          <header class="post__header">
-            <h1 class="post__title">{{ title }}</h1>
-            <time class="post__date">{{ page.date.toLocaleDateString() }}</time>
-          </header>
+      <article class="post">
+        <header class="post__header">
+          <h1 class="post__title">{{ title }}</h1>
+          <time class="post__date">{{ page.date.toLocaleDateString() }}</time>
+        </header>
+        <div class="container-narrow">
           {{ content | safe }}
-        </article>
-      </div>
+        </div>
+      </article>
     </main>
 
     {% include 'footer.njk' %}

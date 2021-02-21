@@ -1,0 +1,21 @@
+.container {
+  width: var(--container);
+  max-width: var(--maxContainer);
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container-narrow {
+  width: 100%;
+  width: var(--containerNarrow);
+  max-width: var(--maxContainer);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main {
+  @media (min-width: 768px) {
+    margin-bottom: 6rem;
+  }
+}

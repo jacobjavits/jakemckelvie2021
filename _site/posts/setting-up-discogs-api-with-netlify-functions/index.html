@@ -4,7 +4,7 @@
   <head>
     <title>Setting Up Discogs API with Netlify Functions</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" href="/dist/css/style.css">
   </head>
 
   <body>
@@ -35,20 +35,20 @@
 </header>
 
     <main>
-      <div class="container">
-        <article class="post">
-          <header class="post__header">
-            <h1 class="post__title">Setting Up Discogs API with Netlify Functions</h1>
-            <time class="post__date">2/1/2021</time>
-          </header>
+      <article class="post">
+        <header class="post__header">
+          <h1 class="post__title">Setting Up Discogs API with Netlify Functions</h1>
+          <time class="post__date">2/1/2021</time>
+        </header>
+        <div class="container-narrow">
           <p>One of the small projects I've had in mind for a while was to set up the <a href="https://www.discogs.com/developers/">Discogs API</a> on my site to pull in all the records from my <a href="https://www.discogs.com/user/jacobjavits/collection">collection</a>. This isn't something that would be considered especially challenging by most seasoned developers' standards, but it's something that I've had to do a surprisingly little amount of in my career. The specific challenge in this case was figuring out how to pass my API token in the request on a static website with no real back-end.</p>
 <p>I spent a good while searching with such queries as &quot;keep API key secret in javascript fetch&quot; with no real satisfying results. Some solutions proposed using <code>.env</code> variables and passing the variable to the API. The problem with this is that the variable is still rendered in plain text on the front-end, so it's ultimately not much different than passing in the key directly. I was going to start learning about setting up an Express server or something of the like, when I somehow came across this <a href="https://www.youtube.com/watch?v=55yiBkD88oo">Learn with Jason video with Joyce Lin</a> which explains exactly how to do what I was trying to do on exactly the same hosting platform that I was already using.</p>
 <p>Jason explains the process of setting up a <a href="https://docs.netlify.com/functions/overview/">Netlify Function</a> to make the API call. You then leverage Netlify's <a href="https://docs.netlify.com/configure-builds/environment-variables/#app">environment variables</a> to store the API key. I don't quite know what's going on under the hood with those variables, but I do know that when used with the functions tool, that data is never exposed on the client-side, thus being a perfect solution for this sort of thing.</p>
 <p>This still took me a good chunk of a Sunday afternoon to figure out, but I'm glad I came across Jason's video because it was a really helpful way to learn about something I didn't fully understand.</p>
 <p>I still have a lot of updates to make to the <a href="/records">Records</a> page to make it more functional and cool, but I at least got something off the ground that has been stationed purely in the &quot;that would be cool to do&quot; part of my brain forever.</p>
 
-        </article>
-      </div>
+        </div>
+      </article>
     </main>
 
     <div class="site-footer">
