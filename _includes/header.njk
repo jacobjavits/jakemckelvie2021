@@ -1,11 +1,19 @@
 <header class="site-header">
   <div class="container">
     <div class="site-header-contents">
+      {% if title == "Home" %}
       <h1 class="site-logo">
         <a class="site-logo__link" href="/">
           {% include 'logo.svg' %}
         </a>
       </h1>
+      {% else %}
+      <p class="site-logo">
+        <a class="site-logo__link" href="/">
+          {% include 'logo.svg' %}
+        </a>
+      </p>
+      {% endif %}
       <nav class="main-nav">
         <ul>
           <li>

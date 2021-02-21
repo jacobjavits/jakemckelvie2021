@@ -1,33 +1,36 @@
 <!doctype html>
-<html>
+<html lang="en">
 
-  <head>
-    <title>{{ title }}
-      | Jake McKelvie</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ '/dist/css/style.css' | url }}">
-  </head>
+<head>
+  <title>{{ title }} | Jake McKelvie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ '/dist/css/style.css' | url }}">
+</head>
 
-  <body>
+<body>
 
-    {% include 'header.njk' %}
+  {% include 'header.njk' %}
 
-    {% if container %}
-    <div class="{{ container }}">
+  {% if container %}
+  <div class="{{ container }}">
     {% endif %}
 
-      <main>
+    <main>
 
-        {{ content | safe }}
+      {% if title != "Home" %}
+      <h1>{{ title }}</h1>
+      {% endif %}
 
-      </main>
+      {{ content | safe }}
+
+    </main>
 
     {% if container %}
-    </div>
-    {% endif %}
+  </div>
+  {% endif %}
 
-    {% include 'footer.njk' %}
+  {% include 'footer.njk' %}
 
-  </body>
+</body>
 
 </html>
