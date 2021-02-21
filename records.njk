@@ -4,9 +4,13 @@ title: Records
 container: container
 ---
 
-<script src="https://unpkg.com/vue@next"></script>
+<script src="https://unpkg.com/vue@3.0.0/dist/vue.global.prod.js"></script>
 
-<p>This data is being pulled from my <a href="https://www.discogs.com/user/jacobjavits/collection">Discogs</a> profile, which I try to keep fairly up to date.</p>
+<h1>Records</h1>
+
+<p>This data is being pulled from my
+  <a href="https://www.discogs.com/user/jacobjavits/collection">Discogs</a>
+  profile, which I try to keep fairly up to date.</p>
 
 <p>The layout is rendered with Vue and it uses Netlify functions to run the Javascript Fetch API to pull results.</p>
 
@@ -14,49 +18,72 @@ container: container
 
 <h2>To Do</h2>
 <ul>
-  <li>Set up routing to change page slug when a different page's data is pulled.</li>
-  <li>Make loading smoother when page data changes.</li>
-  <li>Fix sorting to ignore the " in "Weird Al" so it doesn't show up first (not that Al doesn't deserve top billing).</li>
-  <li>Figure out issue with certain artists appearing out of order (e.g. one Blondie album falls several places before the rest of them).</li>
+  <li><del>Set up routing to change page slug when a different page's data is pulled.</del><br /><strong>Did this using
+      query parameters (i.e. ?page=1). </strong></li>
+  <li><del>Make loading smoother when page data changes.</del><br /><strong>Made a little record loading icon that spins
+      while new data is being pulled in.</strong></li>
+  <li>Fix sorting to ignore the " in "Weird Al" so it doesn't show up first (not that Al doesn't deserve top billing).
+  </li>
+  <li>Figure out issue with certain artists appearing out of order (e.g. one Blondie album falls several places before
+    the rest of them).</li>
+  <li>Add search feature</li>
 </ul>
 
 <div id="my-records">
 
   {% verbatim %}
 
-    <div class="pagination">
-      <button @click="prevPage">Previous</button>
-      <ul class="pagination__numbers">
-        <li v-for="n in pagination.pages" :key="n">
-          <template v-if="n == pageNumber">
-            <strong>{{ n }}</strong>
-          </template>
-          <template v-else="v-else">
-            <a @click="fetchRecords(n)">{{ n }}</a>
-          </template>
-        </li>
-      </ul>
-      <button @click="nextPage">Next</button>
-    </div>
-    <div v-if="loading" class="loading">
-      Loading...
-    </div>
+  <!-- <form action="#"><input type="text" name="" id=""></form> -->
 
-    <div v-if="error" class="error">
-      {{ error }}
-    </div>
+  <div class="pagination">
+    <button @click="prevPage">Previous</button>
+    <ul class="pagination__numbers">
+      <li v-for="n in pagination.pages" :key="n">
+        <template v-if="n == pageNumber">
+          <strong>{{ n }}</strong>
+        </template>
+        <template v-else="v-else">
+          <a @click="fetchRecords(n)">{{ n }}</a>
+        </template>
+      </li>
+    </ul>
+    <button @click="nextPage">Next</button>
+  </div>
+  <div v-if="loading" class="record-loading">
+    <!-- <div class="record-loading"> -->
+    <img class="record-loading__icon" src="/assets/images/record-icon.svg" alt="">
+  </div>
 
-    <div v-if="sortedAlpha">
-      <ul class="record-collection">
-        <li class="record" v-for="record in sortedAlpha" :key="record.id">
-          <img v-bind:src="record.basic_information.thumb" alt="">
-          <span class="record__artist" v-for="artist in record.basic_information.artists">
-            {{ artist.name }}
-          </span>
-          <p class="record__title">{{ record.basic_information.title }}</p>
-        </li>
-      </ul>
-    </div>
+  <div v-if="error" class="error">
+    {{ error }}
+  </div>
+
+  <div v-if="sortedAlpha, !loading">
+    <ul class="record-collection">
+      <li class="record" v-for="record in sortedAlpha" :key="record.id">
+        <img class="record__cover" v-bind:src="record.basic_information.cover_image" alt="">
+        <h3 class="record__artist" v-for="artist in record.basic_information.artists">
+          {{ artist.name }}
+        </h3>
+        <p class="record__title">{{ record.basic_information.title }}</p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="pagination">
+    <button @click="prevPage">Previous</button>
+    <ul class="pagination__numbers">
+      <li v-for="n in pagination.pages" :key="n">
+        <template v-if="n == pageNumber">
+          <strong>{{ n }}</strong>
+        </template>
+        <template v-else="v-else">
+          <a @click="fetchRecords(n)">{{ n }}</a>
+        </template>
+      </li>
+    </ul>
+    <button @click="nextPage">Next</button>
+  </div>
 
   {% endverbatim %}
 </div>
@@ -65,8 +92,14 @@ container: container
 
 <script>
   const MyRecords = {
-    created() {
-      this.fetchRecords(this.pageNumber);
+    data() {
+      return {
+        records: [],
+        pagination: [],
+        pageNumber: 1,
+        urlParams: new URLSearchParams(location.search),
+        loading: true
+      }
     },
     computed: {
       sortedAlpha() {
@@ -79,42 +112,101 @@ container: container
               .name
               .localeCompare(b.basic_information.artists[0].name);
           });
-      }
-    },
-    data() {
-      return {records: [], pagination: [], pageNumber: 1};
+      },
     },
     methods: {
       fetchRecords(pageNumber) {
+        this.loading = true
         return fetch("/.netlify/functions/discogs", {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({page: `${pageNumber}`})
-        })
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              page: `${pageNumber}`
+            })
+          })
           .then((response) => response.json())
           .then((data) => {
             this.records = data.releases;
             this.pagination = data.pagination;
+            this.loading = false
           })
-          .then(this.pageNumber = pageNumber);
+          .then(this.pageNumber = pageNumber)
+          .then(history.pushState(this.pagination.page, `page ${this.pageNumber}`, `?page=${this.pageNumber}`))
+      },
+      fetchForLocal(pageNumber) {
+        let recordArray = [];
+
+        const getRecords = fetch("/.netlify/functions/discogs", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              page: pageNumber
+            })
+          })
+          .then((response) => response.json())
+          .then((data) => {
+            return data.releases
+          })
+
+        const retrievedRecords = async () => {
+          const thisRound = await getRecords
+          this.records = Object.values(thisRound[pageNumber]);
+          console.log('Records\n' + this.records)
+
+          for (let i = 0; i < thisRound.length; i++) {
+            // console.log(thisRound[i].basic_information)
+            recordArray.push(JSON.stringify(thisRound[i], null, 2))
+          }
+          // console.log(recordArray)
+          localStorage.setItem('records', recordArray);
+          // return thisRound
+        }
+
+        retrievedRecords()
       },
       nextPage() {
-        this.pageNumber += this.pageNumber < this.pagination.pages
-          ? 1
-          : 0;
+        if (this.pageNumber < this.pagination.pages) {
+          this.pageNumber++
+        }
         this.fetchRecords(this.pageNumber);
+        history.pushState(this.pagination.page, `page ${this.pageNumber}`, `?page=${this.pageNumber}`)
       },
       prevPage() {
-        this.pageNumber -= this.pageNumber > 1
-          ? 1
-          : 0;
+        if (this.pageNumber > 1) {
+          this.pageNumber--;
+        }
         this.fetchRecords(this.pageNumber);
-      }
+        history.pushState(this.pagination.page, `page ${this.pageNumber}`, `?page=${this.pageNumber}`)
+      },
+    },
+    mounted() {
+      console.log('mounted')
+      // get URL params for page number
+      this.urlParams = new URLSearchParams(location.search)
+      // set page number to param, or default to 1
+      this.pageNumber = this.urlParams.has('page') ? this.urlParams.get('page') : 1
+      // run the fetch function for the first time
+
+      // if (localStorage.getItem('records')) {
+      //   console.log('found local storage')
+      //   try {
+      //     this.records = localStorage.getItem('records');
+      //   } catch (e) {
+      //     localStorage.removeItem('records');
+      //     this.fetchRecords(this.pageNumber);
+      //   }
+      // } else {
+      //   console.log('no local, fetching records')
+      //   this.fetchRecords(this.pageNumber);
+      // }
+
+      this.fetchRecords(this.pageNumber)
     }
   };
-
   Vue
     .createApp(MyRecords)
     .mount("#my-records");
