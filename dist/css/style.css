@@ -672,7 +672,8 @@ nav ul li a:hover {
 .post-card a {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
     position: relative;
     padding: 1.5rem;
     border: 2px solid var(--darkest);
@@ -683,6 +684,13 @@ nav ul li a:hover {
     box-shadow: var(--shadow);
     overflow: hidden;
   }
+@media (min-width: 768px) {
+
+  .post-card a {
+      flex-direction: row;
+      align-items: flex-end
+  }
+    }
 .post-card a::before {
       content: "";
       display: block;
@@ -714,6 +722,7 @@ nav ul li a:hover {
   text-align: right;
   margin-bottom: 0;
   position: relative;
+  white-space: nowrap;
 }
 @media (prefers-color-scheme: dark) {
     .post-card a {

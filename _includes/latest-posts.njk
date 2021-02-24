@@ -3,7 +3,7 @@
     <li class="post-card">
       <a class="post-card__link" href="{{ post.url }}">
         <h3 class="post-card__title">{{ post.data.title }}</h3>
-        <time class="post-card__date">{{ post.date.toLocaleDateString() }}</time>
+        <time class="post-card__date">{{ post.date.toLocaleDateString("en-US", {weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'}) }}</time>
       </a>
     </li>
   {%- endfor -%}

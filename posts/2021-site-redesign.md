@@ -3,6 +3,7 @@ layout: posts.njk
 title: A New Website!
 slug: 
 tags: post
+date: 2021-01-24
 ---
 
 Redesigning this site has been on my back burner for a number of years now. I made one or two false starts but never saw it through. Well, I've finally gotten around to it, and with this new slick setup I'm hoping it will prompt me to more actively maintain and add to it.

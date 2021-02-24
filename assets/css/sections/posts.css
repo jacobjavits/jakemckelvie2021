@@ -24,7 +24,8 @@
   a {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
     position: relative;
     padding: 1.5rem;
     border: 2px solid var(--darkest);
@@ -34,6 +35,11 @@
     transition: 0.1s ease;
     box-shadow: var(--shadow);
     overflow: hidden;
+    
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: flex-end;
+    }
 
     &::before {
       content: "";
@@ -73,6 +79,7 @@
   text-align: right;
   margin-bottom: 0;
   position: relative;
+  white-space: nowrap;
 }
 
 @media (prefers-color-scheme: dark) {

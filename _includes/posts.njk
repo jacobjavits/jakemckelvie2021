@@ -18,7 +18,7 @@ title: Blog Post
       <article class="post">
         <header class="post__header">
           <h1 class="post__title">{{ title }}</h1>
-          <time class="post__date">{{ page.date.toLocaleDateString() }}</time>
+          <time class="post__date">{{ page.date.toLocaleDateString("en-US", {weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'}) }}</time>
         </header>
         <div class="container-narrow">
           {{ content | safe }}
