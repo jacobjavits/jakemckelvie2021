@@ -34,7 +34,7 @@ container: container
   <!-- <form action="#"><input type="text" name="" id=""></form> -->
 
   <div class="pagination">
-    <button @click="prevPage">Previous</button>
+    <button @click="prevPage" :disabled="pageNumber == 1 ? true : false">Previous</button>
     <ul class="pagination__numbers">
       <li v-for="n in pagination.pages" :key="n">
         <template v-if="n == pageNumber">
@@ -45,7 +45,7 @@ container: container
         </template>
       </li>
     </ul>
-    <button @click="nextPage">Next</button>
+    <button @click="nextPage" :disabled="pageNumber == pagination.pages">Next</button>
   </div>
   <div v-if="loading" class="record-loading">
     <!-- <div class="record-loading"> -->
@@ -69,7 +69,7 @@ container: container
   </div>
 
   <div class="pagination">
-    <button @click="prevPage">Previous</button>
+    <button @click="prevPage" :disabled="pageNumber == 1 ? true : false">Previous</button>
     <ul class="pagination__numbers">
       <li v-for="n in pagination.pages" :key="n">
         <template v-if="n == pageNumber">
@@ -80,7 +80,7 @@ container: container
         </template>
       </li>
     </ul>
-    <button @click="nextPage">Next</button>
+    <button @click="nextPage" :disabled="pageNumber == pagination.pages">Next</button>
   </div>
 
   {% endverbatim %}

@@ -4,8 +4,8 @@
   font-style: normal;
   font-weight: 400;
   src: local(""),
-    url("../../fonts/manrope-v3-latin-regular.woff2") format("woff2"),
-    url("../../fonts/manrope-v3-latin-regular.woff") format("woff");
+    url("../../assets/fonts/manrope-v3-latin-regular.woff2") format("woff2"),
+    url("../../assets/fonts/manrope-v3-latin-regular.woff") format("woff");
 }
 
 /* manrope-800 - latin */
@@ -13,8 +13,8 @@
   font-family: "Manrope";
   font-style: normal;
   font-weight: 800;
-  src: local(""), url("../../fonts/manrope-v3-latin-800.woff2") format("woff2"),
-    url("../../fonts/manrope-v3-latin-800.woff") format("woff");
+  src: local(""), url("../../assets/fonts/manrope-v3-latin-800.woff2") format("woff2"),
+    url("../../assets/fonts/manrope-v3-latin-800.woff") format("woff");
 }
 
 :root {

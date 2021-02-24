@@ -8,7 +8,12 @@ button {
   padding: 1rem 3rem;
   cursor: pointer;
 
-  &:hover {
+  &:not([disabled]):hover {
     box-shadow: var(--shadowHover);
+  }
+
+  &[disabled] {
+    opacity: 0.25;
+    cursor: inherit;
   }
 }

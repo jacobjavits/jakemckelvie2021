@@ -286,16 +286,16 @@ template {
   font-style: normal;
   font-weight: 400;
   src: local(""),
-    url("../../fonts/manrope-v3-latin-regular.woff2") format("woff2"),
-    url("../../fonts/manrope-v3-latin-regular.woff") format("woff");
+    url("../../assets/fonts/manrope-v3-latin-regular.woff2") format("woff2"),
+    url("../../assets/fonts/manrope-v3-latin-regular.woff") format("woff");
 }
 /* manrope-800 - latin */
 @font-face {
   font-family: "Manrope";
   font-style: normal;
   font-weight: 800;
-  src: local(""), url("../../fonts/manrope-v3-latin-800.woff2") format("woff2"),
-    url("../../fonts/manrope-v3-latin-800.woff") format("woff");
+  src: local(""), url("../../assets/fonts/manrope-v3-latin-800.woff2") format("woff2"),
+    url("../../assets/fonts/manrope-v3-latin-800.woff") format("woff");
 }
 :root {
   /** Colors */
@@ -499,8 +499,12 @@ button {
   padding: 1rem 3rem;
   cursor: pointer;
 }
-button:hover {
+button:not([disabled]):hover {
     box-shadow: var(--shadowHover);
+  }
+button[disabled] {
+    opacity: 0.25;
+    cursor: inherit;
   }
 /** Components */
 .site-header {

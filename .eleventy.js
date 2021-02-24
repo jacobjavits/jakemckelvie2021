@@ -11,7 +11,8 @@ module.exports = function(eleventyConfig) {
     "svg"
   ]);
 
-  eleventyConfig.addPassthroughCopy("fonts/*.woff2");
+  eleventyConfig.addPassthroughCopy("assets/fonts/*.woff");
+  eleventyConfig.addPassthroughCopy("assets/fonts/*.woff2");
 
   eleventyConfig.addPlugin(eleventyVue);
 };

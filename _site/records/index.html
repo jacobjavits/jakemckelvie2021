@@ -4,6 +4,9 @@
 <head>
   <title>Records | Jake McKelvie</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+  <link rel="alternate icon" href="/assets/images/favicon.ico">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#fff">
   <link rel="stylesheet" href="/dist/css/style.css">
 </head>
 
@@ -77,7 +80,7 @@
   <!-- <form action="#"><input type="text" name="" id=""></form> -->
 
   <div class="pagination">
-    <button @click="prevPage">Previous</button>
+    <button @click="prevPage" :disabled="pageNumber == 1 ? true : false">Previous</button>
     <ul class="pagination__numbers">
       <li v-for="n in pagination.pages" :key="n">
         <template v-if="n == pageNumber">
@@ -88,7 +91,7 @@
         </template>
       </li>
     </ul>
-    <button @click="nextPage">Next</button>
+    <button @click="nextPage" :disabled="pageNumber == pagination.pages">Next</button>
   </div>
   <div v-if="loading" class="record-loading">
     <!-- <div class="record-loading"> -->
@@ -112,7 +115,7 @@
   </div>
 
   <div class="pagination">
-    <button @click="prevPage">Previous</button>
+    <button @click="prevPage" :disabled="pageNumber == 1 ? true : false">Previous</button>
     <ul class="pagination__numbers">
       <li v-for="n in pagination.pages" :key="n">
         <template v-if="n == pageNumber">
@@ -123,7 +126,7 @@
         </template>
       </li>
     </ul>
-    <button @click="nextPage">Next</button>
+    <button @click="nextPage" :disabled="pageNumber == pagination.pages">Next</button>
   </div>
 
   
