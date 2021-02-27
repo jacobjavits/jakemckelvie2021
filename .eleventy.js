@@ -35,7 +35,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets/fonts/*.woff");
   eleventyConfig.addPassthroughCopy("assets/fonts/*.woff2");
 
-  eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
+  eleventyConfig.addAsyncShortcode("image", imageShortcode);
 
   eleventyConfig.addPlugin(eleventyVue);
 };
