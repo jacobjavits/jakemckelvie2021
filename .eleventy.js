@@ -1,4 +1,5 @@
 const eleventyVue = require("@11ty/eleventy-plugin-vue");
+const pluginRss = require("@11ty/eleventy-plugin-rss");
 const Image = require("@11ty/eleventy-img");
 
 async function imageShortcode(src, cls, alt, sizes) {
@@ -35,7 +36,10 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets/fonts/*.woff");
   eleventyConfig.addPassthroughCopy("assets/fonts/*.woff2");
 
+  /** Shortcodes */
   eleventyConfig.addAsyncShortcode("image", imageShortcode);
 
+  /** Plugins */
+  eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(eleventyVue);
 };
