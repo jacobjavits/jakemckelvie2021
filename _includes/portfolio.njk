@@ -1,0 +1,30 @@
+---
+title: Blog Post
+---
+<!doctype html>
+<html>
+
+  {% include 'head.njk' %}
+
+  <body>
+
+    {% include 'header.njk' %}
+
+    <main>
+      <article class="post">
+        <header class="post__header">
+          <h1 class="post__title">{{ title }}</h1>
+          <p class="post__link"><a href="{{ link }}" target="_blank">Visit Website</a></p>
+        </header>
+        <div class="container">
+          <img src="/{{ screenshot }}" class="portfolio-screenshot image-shadow" alt="Screenshot of {{ title }}" />
+          {{ content | safe }}
+        </div>
+      </article>
+    </main>
+
+    {% include 'footer.njk' %}
+
+  </body>
+
+</html>

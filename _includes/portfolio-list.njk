@@ -1,0 +1,10 @@
+<ul class="portfolio">
+  {%- for post in collections.portfolio | reverse -%}
+    <li class="portfolio-card">
+      <a class="portfolio-card__link" href="{{ post.url }}">
+        <h3 class="portfolio-card__title">{{ post.data.title }}</h3>
+        <img src="/{{ post.data.screenshot }}" class="image-shadow" alt="Screenshot of website" />
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>

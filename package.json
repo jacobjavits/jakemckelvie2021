@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@11ty/eleventy": "^0.11.1",
+    "@11ty/eleventy": "^2.0.1",
     "@11ty/eleventy-plugin-rss": "^1.1.0",
     "postcss": "^8.2.6",
     "postcss-cli": "^8.3.1",
@@ -21,10 +21,11 @@
     "webpack-cli": "^4.5.0"
   },
   "dependencies": {
-    "@11ty/eleventy-img": "^0.8.0",
+    "@11ty/eleventy-img": "^4.0.2",
     "@11ty/eleventy-plugin-vue": "^0.2.4",
     "autoprefixer": "^10.2.4",
-    "postcss-clean": "^1.2.2",
+    "netlify-cli": "^17.20.1",
+    "postcss-clean": "^1.2.0",
     "postcss-import": "^14.0.0"
   }
 }

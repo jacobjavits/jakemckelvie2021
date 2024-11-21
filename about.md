@@ -5,8 +5,10 @@ container: container
 ---
 
 <p class="image-right">
-{% image "assets/images/me.jpg", "rounded image-clockwise image-shadow", "Me sitting on a couch with my laptop", "300" %}
+
 </p>
+
+I live in Worcester, MA. 
 
 I first started learning about making websites in high school. I've been a freelancer since 2015 after spending four
 years working at a small web company in Massachusetts. Since then, I've been working for a rotating cast of agencies
@@ -17,7 +19,7 @@ My primary interest is front-end buildouts: creating templates and turning desig
 partial to the static site world, but I've spent a lot of time building sites in Wordpress which is how I learned a
 lot of the fundamentals.
 
-I play in [this band](https://jcmandtops.com/) with my pals Nick and Matt. We've made albums and toured around the
+I'm also a [part-time touring musician](https://jakemckelvie.com/) and have made albums and toured around the
 country on and off since around 2010.
 
 I'm happy to chat with anyone interested in connecting about websites, music or anything else. Feel free to email me

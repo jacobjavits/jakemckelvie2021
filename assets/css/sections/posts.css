@@ -35,7 +35,7 @@
     transition: 0.1s ease;
     box-shadow: var(--shadow);
     overflow: hidden;
-    
+
     @media (min-width: 768px) {
       flex-direction: row;
       align-items: flex-end;
@@ -64,7 +64,7 @@
     }
   }
 
-  &:first-child > a {
+  &:first-child>a {
     border-top-left-radius: 0 !important;
   }
 }
@@ -95,6 +95,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   background-color: var(--accentColor);
   margin-bottom: 2rem;
   padding: 2rem 1rem;
@@ -110,5 +111,15 @@
   .post__date {
     background-color: var(--accentColor);
     text-align: center;
+  }
+
+  .post__link {
+    a {
+      text-decoration: underline;
+
+      &::after {
+        content: '>';
+      }
+    }
   }
 }
